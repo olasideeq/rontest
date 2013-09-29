@@ -31,35 +31,41 @@ function onDeviceReady() {
 //}
 
 // Upload files to server
-//function uploadFile(mediaFile) {
-//    path = mediaFile.fullPath;
-//    name = mediaFile.name;
-//    
-//    var options = new FileUploadOptions();
-//    options.fileKey="file";
-//    options.fileName=mediaFile.name;
-//    options.mimeType="image/jpeg";
-//
-//    var params = new Object();
-//    params.fullpath = path;
-//    params.name = name;
-//
-//    options.params = params;
-//    options.chunkedMode = false;
-//    
-//    var ft = new FileTransfer();
-//    ft.upload( path, "http://www.serverurl.com/image_upload",
-//        function(result) {
-//			//upload successful            
-//        },
-//        function(error) {
-//            //upload unsuccessful, error occured while upload. 
-//        },
-//        options
-//        );
-//}
+function uploadFile(mediaFile) {
+    path = mediaFile.fullPath;
+    name = mediaFile.name;
+    
+    var options = new FileUploadOptions();
+    options.fileKey="file";
+    options.fileName=mediaFile.name;
+    options.mimeType="image/jpeg";
+
+    var params = new Object();
+    params.fullpath = path;
+    params.name = name;
+
+    options.params = params;
+    options.chunkedMode = false;
+    
+    var ft = new FileTransfer();
+    ft.upload( path, "http://www.reachoutnigeria.org/push/pic_upload.php",
+        function(result) {
+			//upload successful
+			alert("upload successful");            
+        },
+        function(error) {
+            //upload unsuccessful, error occured while upload. 
+        },
+        options
+        );
+}
 
 //from phonegap doc
+
+
+function submitPhoto() {
+      	  
+    }
 
 // A button will call this function
 //
@@ -91,6 +97,8 @@ function onPhotoDataSuccess(imageData) {
 	  smallImage.src = "data:image/jpeg;base64," + imageData;
 	  
 	  //alert(imageData);
+	  
+	  uploadFile(mediaFiles[0]);
 	  
 }
 // Called if something bad happens.
