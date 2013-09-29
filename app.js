@@ -6,7 +6,7 @@ function init() {
 
 // PhoneGap is ready
 function onDeviceReady() {
-	alert('It works!');
+	//alert('It works!');
 }
 		
 // Called when capture operation is finished
@@ -93,10 +93,59 @@ function onFail(message) {
 	  alert('Failed because: ' + message);
 }
 
+// A button will call this function
+//
+function getPhoto(source) {
+  // Retrieve image file location from specified source
+  navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, destinationType: destinationType.FILE_URI,
+	sourceType: source });
+}
+
+// Called when a photo is successfully retrieved
+//
+function onPhotoURISuccess(imageURI) {
+  // Uncomment to view the image file URI 
+  // console.log(imageURI);
+
+  // Get image handle
+  //
+  var largeImage = document.getElementById('largeImage');
+
+  // Unhide image elements
+  //
+  largeImage.style.display = 'block';
+
+  // Show the captured photo
+  // The inline CSS rules are used to resize the image
+  //
+  largeImage.src = imageURI;
+}
 
 
+//video capture
+//
+// capture callback
+var captureSuccess = function(mediaFiles) {
+    var i, path, len;
+    for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+        path = mediaFiles[i].fullPath;
+        // do something interesting with the file
+		alert(path);
+    }
+};
+
+// capture error callback
+var captureError = function(error) {
+    navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
+};
 
 
+// A button will call this function
+//
+function capturePhoto() {
+    // start video capture
+	navigator.device.capture.captureVideo(captureSuccess, captureError, {limit:2});
+}
 
 
 
