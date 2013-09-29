@@ -11,53 +11,53 @@ function onDeviceReady() {
 		
 // Called when capture operation is finished
 //
-function captureSuccess(mediaFiles) {    
-    uploadFile(mediaFiles[0]);
-}
+//function captureSuccess(mediaFiles) {    
+//    uploadFile(mediaFiles[0]);
+//}
 
 // Called if something bad happens.
 //
-function captureError(error) {
-    var msg = 'An error occurred during capture: ' + error.code;
-    navigator.notification.alert(msg, null, 'Uh oh!');
-}
+//function captureError(error) {
+//    var msg = 'An error occurred during capture: ' + error.code;
+//    navigator.notification.alert(msg, null, 'Uh oh!');
+//}
 
 // A button will call this function
 //
-function captureImage() {
-    // Launch device camera application,
-    // allowing user to capture only one image by {limit: 1}
-    navigator.device.capture.captureImage(captureSuccess, captureError, { limit: 1 });
-}
+//function captureImage() {
+//    // Launch device camera application,
+//    // allowing user to capture only one image by {limit: 1}
+//    navigator.device.capture.captureImage(captureSuccess, captureError, { limit: 1 });
+//}
 
 // Upload files to server
-function uploadFile(mediaFile) {
-    path = mediaFile.fullPath;
-    name = mediaFile.name;
-    
-    var options = new FileUploadOptions();
-    options.fileKey="file";
-    options.fileName=mediaFile.name;
-    options.mimeType="image/jpeg";
-
-    var params = new Object();
-    params.fullpath = path;
-    params.name = name;
-
-    options.params = params;
-    options.chunkedMode = false;
-    
-    var ft = new FileTransfer();
-    ft.upload( path, "http://www.serverurl.com/image_upload",
-        function(result) {
-			//upload successful            
-        },
-        function(error) {
-            //upload unsuccessful, error occured while upload. 
-        },
-        options
-        );
-}
+//function uploadFile(mediaFile) {
+//    path = mediaFile.fullPath;
+//    name = mediaFile.name;
+//    
+//    var options = new FileUploadOptions();
+//    options.fileKey="file";
+//    options.fileName=mediaFile.name;
+//    options.mimeType="image/jpeg";
+//
+//    var params = new Object();
+//    params.fullpath = path;
+//    params.name = name;
+//
+//    options.params = params;
+//    options.chunkedMode = false;
+//    
+//    var ft = new FileTransfer();
+//    ft.upload( path, "http://www.serverurl.com/image_upload",
+//        function(result) {
+//			//upload successful            
+//        },
+//        function(error) {
+//            //upload unsuccessful, error occured while upload. 
+//        },
+//        options
+//        );
+//}
 
 //from phonegap doc
 
@@ -65,7 +65,10 @@ function uploadFile(mediaFile) {
 //
 function capturePhoto() {
       // Take picture using device camera and retrieve image as base64-encoded string
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50 });
+      //navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50 });
+	  
+	  navigator.device.capture.captureImage(onPhotoDataSuccess, onFail, { limit: 1 });
+	  
     }
 
 // Called when a photo is successfully retrieved
@@ -76,22 +79,27 @@ function onPhotoDataSuccess(imageData) {
 	
 	  // Get image handle
 	  //
-	  var smallImage = document.getElementById('smallImage');
+	  //var smallImage = document.getElementById('smallImage');
 	
 	  // Unhide image elements
 	  //
-	  smallImage.style.display = 'block';
+	  //smallImage.style.display = 'block';
 	
 	  // Show the captured photo
 	  // The inline CSS rules are used to resize the image
 	  //
-	  smallImage.src = "data:image/jpeg;base64," + imageData;
+	  //smallImage.src = "data:image/jpeg;base64," + imageData;
+	  
+	  alert(imageData);
+	  
 }
 // Called if something bad happens.
 // 
 function onFail(message) {
 	  alert('Failed because: ' + message);
 }
+
+/* Get Photo from device */
 
 // A button will call this function
 //
@@ -109,18 +117,22 @@ function onPhotoURISuccess(imageURI) {
 
   // Get image handle
   //
-  var largeImage = document.getElementById('largeImage');
+  //var largeImage = document.getElementById('largeImage');
 
   // Unhide image elements
   //
-  largeImage.style.display = 'block';
+  //largeImage.style.display = 'block';
 
   // Show the captured photo
   // The inline CSS rules are used to resize the image
   //
-  largeImage.src = imageURI;
+  //largeImage.src = imageURI;
+  
+  alert(imageURI);
+  
 }
 
+/* Record video area */
 
 //video capture
 //
@@ -142,7 +154,7 @@ var captureError = function(error) {
 
 // A button will call this function
 //
-function capturePhoto() {
+function recordVideo() {
     // start video capture
 	navigator.device.capture.captureVideo(captureSuccess, captureError, {limit:2});
 }
