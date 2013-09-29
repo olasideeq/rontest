@@ -79,18 +79,18 @@ function onPhotoDataSuccess(imageData) {
 	
 	  // Get image handle
 	  //
-	  //var smallImage = document.getElementById('smallImage');
+	  var smallImage = document.getElementById('smallImage');
 	
 	  // Unhide image elements
 	  //
-	  //smallImage.style.display = 'block';
+	  smallImage.style.display = 'block';
 	
 	  // Show the captured photo
 	  // The inline CSS rules are used to resize the image
 	  //
-	  //smallImage.src = "data:image/jpeg;base64," + imageData;
+	  smallImage.src = "data:image/jpeg;base64," + imageData;
 	  
-	  alert(imageData);
+	  //alert(imageData);
 	  
 }
 // Called if something bad happens.
@@ -156,7 +156,7 @@ var captureError = function(error) {
 //
 function recordVideo() {
     // start video capture
-	navigator.device.capture.captureVideo(captureSuccess, captureError, {limit:2});
+	navigator.device.capture.captureVideo(captureSuccess, captureError, {limit:1});
 }
 
 
