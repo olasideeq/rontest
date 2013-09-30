@@ -125,7 +125,7 @@ function onFail(message) {
 function getPhoto(source) {
   alert("getting photo");
   // Retrieve image file location from specified source
-  navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, destinationType: destinationType.FILE_URI, sourceType: source });
+  navigator.camera.getPicture(onPhotoURISuccess, onFail, { destinationType: destinationType.FILE_URI, sourceType: source });
 }
 
 // Called when a photo is successfully retrieved
