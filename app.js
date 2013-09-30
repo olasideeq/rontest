@@ -32,6 +32,9 @@ function onDeviceReady() {
 
 // Upload files to server
 function uploadFile(mediaFile) {
+	
+	alert ("now uploading");
+	
     path = mediaFile.fullPath;
     name = mediaFile.name;
     
@@ -100,7 +103,9 @@ function onPhotoDataSuccess(imageData) {
 	  //smallImage.src = "data:image/jpeg;base64," + imageData;
 	  smallImage.src = imageData;
 	  
-	  alert("data:image/jpeg;base64," + imageData);
+	  //alert("data:image/jpeg;base64," + imageData);
+	  
+	  alert(mediaFiles[0].fullPath);
 	  
 	  uploadFile(mediaFiles[0]);
 	  
@@ -118,6 +123,7 @@ function onFail(message) {
 // A button will call this function
 //
 function getPhoto(source) {
+  alert("getting photo");
   // Retrieve image file location from specified source
   navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, destinationType: destinationType.FILE_URI, sourceType: source });
 }
