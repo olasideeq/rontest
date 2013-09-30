@@ -79,7 +79,7 @@ function capturePhoto() {
       // Take picture using device camera and retrieve image as base64-encoded string
       //navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50 });
 	  
-	  navigator.device.capture.captureImage(onPhotoURISuccess, onFail, { limit: 1, destinationType: destinationType.FILE_URI, quality: 50 });
+	  navigator.device.capture.captureImage(captureSuccess, onFail, { limit: 1 });
 	  
     }
 
