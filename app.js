@@ -79,7 +79,7 @@ function capturePhoto() {
       // Take picture using device camera and retrieve image as base64-encoded string
       //navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50 });
 	  
-	  navigator.device.capture.captureImage(onPhotoDataSuccess, onFail, { limit: 1 });
+	  navigator.device.capture.captureImage(onPhotoURISuccess, onFail, { limit: 1, destinationType: destinationType.FILE_URI, quality: 50 });
 	  
     }
 
@@ -91,23 +91,23 @@ function onPhotoDataSuccess(imageData) {
 	
 	  // Get image handle
 	  //
-	  var smallImage = document.getElementById('smallImage');
+	  //var smallImage = document.getElementById('smallImage');
 	
 	  // Unhide image elements
 	  //
-	  smallImage.style.display = 'block';
+	  //smallImage.style.display = 'block';
 	
 	  // Show the captured photo
 	  // The inline CSS rules are used to resize the image
 	  //
 	  //smallImage.src = "data:image/jpeg;base64," + imageData;
-	  smallImage.src = imageData;
+	  //smallImage.src = imageData;
 	  
 	  //alert("data:image/jpeg;base64," + imageData);
 	  
-	  alert(mediaFiles[0].fullPath);
+	  //alert(mediaFiles[0].fullPath);
 	  
-	  uploadFile(mediaFiles[0]);
+	  //uploadFile(mediaFiles[0]);
 	  
 	  //alert('uploaded');
 	  
@@ -146,6 +146,12 @@ function onPhotoURISuccess(imageURI) {
   // The inline CSS rules are used to resize the image
   //
   //largeImage.src = imageURI;
+  
+  var smallImage = document.getElementById('smallImage');
+  
+  smallImage.style.display = 'block';
+  
+  smallImage.src = imageURI;  
   
   alert(imageURI);
   
