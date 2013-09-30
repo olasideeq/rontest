@@ -42,6 +42,9 @@ function uploadFile(mediaFile) {
 
     var params = new Object();
     params.fullpath = path;
+	
+	alert (path);
+	
     params.name = name;
 
     options.params = params;
