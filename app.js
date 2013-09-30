@@ -79,7 +79,7 @@ function capturePhoto() {
       // Take picture using device camera and retrieve image as base64-encoded string
       //navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50 });
 	  
-	  navigator.device.capture.captureImage(captureSuccess, onFail, { limit: 1 });
+	  navigator.device.capture.captureImage(capturePhotoSuccess, onFail, { limit: 1 });
 	  
     }
 
@@ -156,6 +156,23 @@ function onPhotoURISuccess(imageURI) {
   alert(imageURI);
   
 }
+
+
+var capturePhotoSuccess = function(mediaFiles) {
+    var i, path, len;
+    for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+        path = mediaFiles[i].fullPath;
+        // do something interesting with the file
+		alert(path);
+		
+		var smallImage = document.getElementById('smallImage');
+		  
+		  smallImage.style.display = 'block';
+		  
+		  smallImage.src = path; 
+  
+    }
+};
 
 /* Record video area */
 
