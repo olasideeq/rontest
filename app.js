@@ -97,9 +97,11 @@ function onPhotoDataSuccess(imageData) {
 	  //smallImage.src = "data:image/jpeg;base64," + imageData;
 	  smallImage.src = imageData;
 	  
-	  //alert(imageData);
+	  alert("data:image/jpeg;base64," + imageData);
 	  
 	  uploadFile(mediaFiles[0]);
+	  
+	  //alert('uploaded');
 	  
 }
 // Called if something bad happens.
